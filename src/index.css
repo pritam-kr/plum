@@ -1,1 +1,44 @@
  
+ *{
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+ }
+
+ :root{
+    --primary-color: #E06358;
+    --secondary-color: #E5E1DC;
+    --body-color : #ECE9E5;
+    --heading-color: #182639;
+    --paragraph-color: #2D3D54;
+    --yellow-color: #FFDE9E;
+    --border-color: #8C98AB;
+    --primary-white: #ffffff;
+ }
+
+ html{
+   font-size: 70%;
+ }
+
+ .heading{
+   color: var(--heading-color)
+ }
+
+ .sub-heading{
+   color: var(--paragraph-color)
+ }
+
+ .icons{
+
+ }
+
+ .lists{
+
+ }
+
+ .btns{
+
+ }
+ .input{
+  
+ }
