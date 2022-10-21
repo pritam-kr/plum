@@ -1,0 +1,23 @@
+.form_preview{
+    background-color: var(--primary-white);
+    border-radius: .5rem;
+   
+    margin-top: 1.5rem;
+}
+
+.form_preview header{
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form_preview .lists{
+    font-size: 1.5rem;
+    list-style-type: none;
+    padding: .5rem 1rem .5rem 1rem;
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
