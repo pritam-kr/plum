@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Icons from "react-icons/fa";
+import { useFormContext } from "../../../../context/FormContext";
 import { ButtonNext } from "../../../ButtonNext/ButtonNext";
 
 const Review = () => {
-  const clickHandler = () => {};
+
+ const {setPage, formData} =  useFormContext()
+ const {plansInfo :{planType} } = formData
+ const [text, setText] = useState("")
+
+ const clickHandler = () => {
+  setText(`Congratulations!! ${formData.email.split("@")[0]}`)
+ };
+
 
   return (
     <>
@@ -12,34 +21,23 @@ const Review = () => {
           <header>
             <h1 className="headings">
               <p className="btn_back">
-                <Icons.FaBackward />
+                <Icons.FaBackward onClick={() => setPage(page => page -1)}/>
               </p>
-              Review and confirm payment
+              {!text ? "Review and confirm payment" : text}
+            
             </h1>
           </header>
 
           <div className="form_preview">
             <li className="lists">
-              Plan <small> </small>
+              Plan <small> {!planType.name ? "-" : `${planType.name} | ${planType.feature}`} </small>
             </li>
-            <li className="lists">
-              Email <small> </small>
-            </li>
-            <li className="lists">
-              Mobile <small> </small>
-            </li>
-            <li className="lists">
-              Address line 001 <small> </small>
-            </li>
-            <li className="lists">
-              Address line 002 <small> </small>
-            </li>
-            <li className="lists">
-              Pincode <small></small>
-            </li>
-            <li className="lists">
-              State <small> </small>
-            </li>
+            <li className='lists'>Email <small>{!formData.email ? "-" : formData.email}</small></li>
+        <li className='lists'>Mobile <small>{!formData.mobile ? "-" : formData.mobile}</small></li>
+        <li className='lists'>Address line 001 <small>{!formData.address1 ? "-" : formData.address1} </small></li>
+        <li className='lists'>Address line 002 <small>{!formData.address2 ? "-" : formData.address2} </small></li>
+        <li className='lists'>Pincode <small>{!formData.pincode ? "-" : formData.pincode}</small></li>
+        <li className='lists'>State <small>{!formData.state ? "-" : formData.state} </small></li>
           </div>
         </div>
       </div>

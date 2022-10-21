@@ -4,93 +4,22 @@ import "./Plans.css";
 import * as Icons from "react-icons/bi";
 import { FormPreview } from "../../../FormPreview/FormPreview";
 import { ButtonNext } from "../../../ButtonNext/ButtonNext";
-import { regx } from "../../../../utils";
-
+import { formValidation } from "../../../../utils";
 
 const Plans = () => {
   const {
-    insourancePlan, error, setError, formData, setFormData
+    insourancePlan,
+    error,
+    setError,
+    formData,
+    setFormData,
+    setPage,
   } = useFormContext();
 
-  
   const [showPlan, setShowPlan] = useState(false);
-
-  
-
-  function formValidation(formData) {
-    if (Object.values(formData.plansInfo).length === 0) {
-      setError((prev) => ({ ...prev, planInfo: "Please select your plan" }));
-    } else {
-      setError((prev) => ({ ...prev, planInfo: "" }));
-    }
-
-    if (formData.email === "" || formData.email === " " || !regx.test(formData.email)) {
-      setError((prev) => ({
-        ...prev,
-        email: "Please enter a valid email address",
-      }));
-    } else {
-      setError((prev) => ({ ...prev, email: "" }));
-    }
-
-    if (formData.mobile === "" || formData.mobile === " ") {
-      setError((prev) => ({
-        ...prev,
-        mobile: "Please enter a valid mobile number",
-      }));
-    } else {
-      setError((prev) => ({ ...prev, mobile: "" }));
-    }
-
-    if (formData.address1 === "" || formData.address1 === " ") {
-      setError((prev) => ({
-        ...prev,
-        address1: "Please enter a valid address1",
-      }));
-    } else {
-      setError((prev) => ({ ...prev, address1: "" }));
-    }
-
-    if (formData.address2 === "" || formData.address2 === " ") {
-      setError((prev) => ({
-        ...prev,
-        address2: "Please enter a valid address2",
-      }));
-    } else {
-      setError((prev) => ({ ...prev, address2: "" }));
-    }
-
-    if (formData.pincode === "" || formData.pincode === " ") {
-      setError((prev) => ({
-        ...prev,
-        pincode: "Please enter a valid pincode",
-      }));
-    } else {
-      setError((prev) => ({ ...prev, pincode: "" }));
-    }
-
-    if (formData.state === "" || formData.state === " ") {
-      setError((prev) => ({ ...prev, state: "Please enter a valid state" }));
-    } else {
-      setError((prev) => ({ ...prev, state: "" }));
-    }
-
-    if (
-      Object.values(formData.plansInfo).length !== 0 &&
-      formData.email &&
-      formData.mobile &&
-      formData.address1 &&
-      formData.address2 &&
-      formData.pincode &&
-      formData.state
-    ) {
-      console.log("ok")
-    }
-  }
-
+ 
   const nextHandler = () => {
-    console.log(regx.test(formData.email))
-    formValidation(formData);
+    formValidation(formData, setError, setPage);
   };
 
   const choosePlanHandler = (plan) => {
@@ -117,8 +46,9 @@ const Plans = () => {
                 className="plan_lists plan_list_header"
                 onClick={() => setShowPlan(!showPlan)}
               >
-                {!formData.plansInfo.title ? 
-                "Select Your Plan" : formData.plansInfo.title }
+                {!formData.plansInfo.title
+                  ? "Select Your Plan"
+                  : formData.plansInfo.title}
                 <span>
                   <Icons.BiArrowToBottom />
                 </span>
@@ -147,6 +77,7 @@ const Plans = () => {
                   <label className="label">Personal emial address</label>
                   <p className="error">{error?.email}</p>
                   <input
+                    value={formData.email}
                     className="input"
                     placeholder="Enter"
                     onChange={(event) =>
@@ -161,6 +92,7 @@ const Plans = () => {
                   <label className="label">Mobile</label>
                   <p className="error">{error?.mobile}</p>
                   <input
+                    value={formData.mobile}
                     className="input"
                     placeholder="Enter"
                     onChange={(event) =>
@@ -175,6 +107,7 @@ const Plans = () => {
                   <label className="label">Address line 01</label>
                   <p className="error">{error?.address1}</p>
                   <input
+                    value={formData.address1}
                     className="input"
                     placeholder="Enter"
                     onChange={(event) =>
@@ -191,6 +124,7 @@ const Plans = () => {
                   <label className="label">Address line 02</label>
                   <p className="error">{error?.address2}</p>
                   <input
+                    value={formData.address2}
                     className="input"
                     placeholder="Enter"
                     onChange={(event) =>
@@ -205,6 +139,7 @@ const Plans = () => {
                   <label className="label">Pincode</label>
                   <p className="error">{error?.pincode}</p>
                   <input
+                    value={formData.pincode}
                     className="input"
                     placeholder="Enter"
                     onChange={(event) =>
@@ -219,6 +154,7 @@ const Plans = () => {
                   <label className="label">State</label>
                   <p className="error">{error?.state}</p>
                   <input
+                    value={formData.state}
                     className="input"
                     placeholder="Enter"
                     onChange={(event) =>
@@ -237,7 +173,7 @@ const Plans = () => {
           <FormPreview />
         </div>
       </div>
-      <ButtonNext onClick={nextHandler} children={"Next"}  />
+      <ButtonNext onClick={nextHandler} children={"Next"} />
     </>
   );
 };

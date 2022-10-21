@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import * as Icons from "react-icons/fa";
+import { useFormContext } from "../../../../context/FormContext";
 import { ButtonNext } from "../../../ButtonNext/ButtonNext";
 import { FormPreview } from "../../../FormPreview/FormPreview";
 import "./Declaration.css";
 
 const Declaration = () => {
+
+  const {setPage} = useFormContext()
+
   const [check, setCheck] = useState({
     checkOne: null,
     checkTwo: null,
@@ -23,7 +27,7 @@ const Declaration = () => {
       setError("Please check all checkbox.");
     } else {
       setError("");
-      console.log("Next step");
+       setPage(page => page +1)
     }
   }
 
@@ -38,7 +42,7 @@ const Declaration = () => {
           <header>
             <h1 className="headings">
               <p className="btn_back">
-                <Icons.FaBackward />
+                <Icons.FaBackward  onClick={() => setPage(page => page -1)}/>
               </p>
               Declaration
             </h1>

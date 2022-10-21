@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useReducer, useState } from "react";
-import * as Icons from "react-icons/bi";
+import React, { createContext, useContext, useState } from "react";
+ 
 
 const FormContext = createContext();
 
@@ -40,6 +40,7 @@ export const FormContextProvider = ({ children }) => {
     pincode: "",
     state: "",
     plansInfo: {},
+    priceRange: 0,
   });
 
   const currentPlanInfo = {
@@ -47,8 +48,9 @@ export const FormContextProvider = ({ children }) => {
     selectedPlan: formData.plansInfo,
   };
 
-  const [steps, setSteps] = useState(0);
+  const [page, setPage] = useState(0);
 
+ 
   return (
     <FormContext.Provider
       value={{
@@ -58,8 +60,8 @@ export const FormContextProvider = ({ children }) => {
         setFormData,
         formData,
         currentPlanInfo,
-        steps,
-        setSteps,
+        page,
+        setPage,
       }}
     >
       {children}

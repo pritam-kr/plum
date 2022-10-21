@@ -7,6 +7,11 @@ import "./Amount.css";
 import { useFormContext } from "../../../../context/FormContext";
 
 const Amount = () => {
+
+ const {setPage, setFormData, formData} =  useFormContext()
+
+ const {plansInfo :{planType} } = formData
+
   const [range, setRange] = useState(100000);
   const [check, setCheck] = useState(null);
   const [error, setError] = useState("");
@@ -16,7 +21,8 @@ const Amount = () => {
       setError("Please check the checkbox.");
     } else {
       setError("");
-      console.log("next step");
+      setFormData(prev => ({...prev, priceRance: range}))
+      setPage(page => page +1)
     }
   };
 
@@ -27,7 +33,7 @@ const Amount = () => {
           <header>
             <h1 className="headings">
               <p className="btn_back">
-                <Icons.FaBackward />
+                <Icons.FaBackward onClick={() => setPage(page => page -1)}/>
               </p>
               Select your deductible amount
             </h1>
@@ -38,12 +44,12 @@ const Amount = () => {
           </header>
 
           <div className="plans_details">
-            <p className="sub-heading bold">Self (Individual)</p>
+            <p className="sub-heading bold"> {planType.name} ({planType.feature})</p>
             <li className="plan_lists plan_list_header amount_header">
               <span>
                 <BiIcons.BiUserCircle className="icons" />
               </span>
-              <span className="username">Jhon Doe</span>
+              <span className="username">{formData.email.split('@')[0]}</span>
             </li>
           </div>
 
