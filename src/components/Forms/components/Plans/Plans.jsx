@@ -4,14 +4,17 @@ import "./Plans.css";
 import * as Icons from "react-icons/bi";
 import { FormPreview } from "../../../FormPreview/FormPreview";
 import { ButtonNext } from "../../../ButtonNext/ButtonNext";
+import { regx } from "../../../../utils";
+
 
 const Plans = () => {
   const {
-    state: { insourancePlan }, error, setError, formData, setFormData
+    insourancePlan, error, setError, formData, setFormData
   } = useFormContext();
 
   
   const [showPlan, setShowPlan] = useState(false);
+
   
 
   function formValidation(formData) {
@@ -21,7 +24,7 @@ const Plans = () => {
       setError((prev) => ({ ...prev, planInfo: "" }));
     }
 
-    if (formData.email === "" || formData.email === " ") {
+    if (formData.email === "" || formData.email === " " || !regx.test(formData.email)) {
       setError((prev) => ({
         ...prev,
         email: "Please enter a valid email address",
@@ -86,6 +89,7 @@ const Plans = () => {
   }
 
   const nextHandler = () => {
+    console.log(regx.test(formData.email))
     formValidation(formData);
   };
 
@@ -113,8 +117,8 @@ const Plans = () => {
                 className="plan_lists plan_list_header"
                 onClick={() => setShowPlan(!showPlan)}
               >
-                {" "}
-                Select Your Plan{" "}
+                {!formData.plansInfo.title ? 
+                "Select Your Plan" : formData.plansInfo.title }
                 <span>
                   <Icons.BiArrowToBottom />
                 </span>
@@ -233,7 +237,7 @@ const Plans = () => {
           <FormPreview />
         </div>
       </div>
-      <ButtonNext disaled={false} onClick={nextHandler} />
+      <ButtonNext onClick={nextHandler} children={"Next"}  />
     </>
   );
 };

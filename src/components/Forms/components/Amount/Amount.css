@@ -1,12 +1,42 @@
-.amount_header{
-    justify-content: flex-start;
-    align-items: center;
+.amount_header {
+  justify-content: flex-start;
+  align-items: center;
 }
-.amount_header .icons{
-    font-size: 2.6rem;
-    margin-right: 1rem;
+.amount_header .icons {
+  font-size: 2.6rem;
+  margin-right: 1rem;
 }
 
-.amount_header .username{
-    font-weight: 700;
+.amount_header .username {
+  font-weight: 700;
+}
+
+.btn_back {
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.114);
+  width: 30px;
+  height: 30px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.slider_details {
+  grid-template-columns: 100%;
+}
+
+.slider_details .declar {
+  display: flex;
+  flex-direction: column;
+}
+.slider_details .declar input {
+  width: fit-content;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.slider_details .declar p {
+  font-size: medium;
 }

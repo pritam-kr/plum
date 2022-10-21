@@ -1,0 +1,8 @@
+.conditions input{
+width: fit-content;
+
+}
+.conditions p{
+    font-size: large;
+    margin-bottom: 1rem;
+}
